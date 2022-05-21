@@ -868,16 +868,10 @@ def _check_for_loops(free_surf_walk_inds, new_inds, _step,
             nonz_walk = full_walk[full_walk > 0]   # where non-zero
             relv_walk = nonz_walk[nonz_walk > L0_ind_cut]
 
-            if (new_ind > 0):
+            if new_ind > 0:
 
                 # determine if has a repeat ind
-                has_repeat_ind = False
-                for _, iind in enumerate(relv_walk):
-                    if iind == new_ind:
-                        has_repeat_ind = True
-                        break
-
-                if has_repeat_ind:
+                if new_ind in relv_walk:
                     # handle when a loop is detected
                     px0, py0 = shared_tools.custom_unravel(
                         new_ind, domain_shape)
